@@ -35,6 +35,7 @@ javascript:(function(){
 		ratio2 = ra2[0].replace("応援効果","").replace("倍","");
 		ratio2 = parseInt(ratio2);
 	}else{ratio2 = 1;}
+	const ra3 = p_box.innerHTML.match(/5000枚ズドン/);
 
 	if(pt!=null){
 		pot = pt[0].replace("BET賞金ポット ","").replace("枚","");
@@ -135,6 +136,7 @@ javascript:(function(){
 				}
 				if(ratio==2) bet_value = 1000;
 				if(ratio==4) bet_value = 30;
+				if(ra3!=null) bet_value = 5000;
 				tb.innerHTML = "お試し " + bet_value + "枚<br>";
 				tb.color = "#0a6";
 				tb.classList.add("test_bet");
@@ -665,6 +667,7 @@ javascript:(function(){
 				}
 				if(ratio==2) bet_value = 1000;
 				if(ratio==4) bet_value = 30;
+				if(ra3!=null) bet_value = 5000;
 				test_bet += tb*bet_value;
 				tb_num += tb;
 			});

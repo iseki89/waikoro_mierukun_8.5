@@ -429,6 +429,7 @@ javascript:(function(){
 					let userName;
 					if(un!=null){
 						userName = un.replace(/ \d*枚/,"");
+						userName = un.replace(/<.*>/,"");
 						// if(userName.match(/<b>/)){
 						// 	userName = userName + "</b>";
 						// }

@@ -12,7 +12,7 @@ javascript:(function(){
 	let sum = 0;
 	let bets = 0;
 	let test_bet = 0;
-	let test_pot = [0,0,0];
+	let test_pot = [0,0,0,0];
 	let test_pot_sum = 0;
 	let test_cost = 0;
 	let test_hp = 0;
@@ -243,7 +243,7 @@ javascript:(function(){
 	display3.style.display = "inline-block";
 	display_box.appendChild(display3);
 	const test_love_box = [];
-	for(i=0;i<4;i++){
+	for(i=0;i<5;i++){
 		const d = document.createElement("div");
 		d.style.display = "inline-block";
 		d.style.margin = "0px 5px";
@@ -253,16 +253,19 @@ javascript:(function(){
 	const cheer_p = [];
 	const aid_p = [];
 	const love_p = [];
+	const cosmo_p = [];
 	const reset_p = [];
 	for(i=0;i<2;i++){
 		cheer_p.push(document.createElement("p"));
 		aid_p.push(document.createElement("p"));
 		love_p.push(document.createElement("p"));
+		cosmo_p.push(document.createElement("p"));
 		reset_p.push(document.createElement("p"));
 	}
 	cheer_p[0].innerHTML = "お試し応援";
 	aid_p[0].innerHTML = "お試し救援";
 	love_p[0].innerHTML = "お試しラブコ";
+	cosmo_p[0].innerHTML = "お試し宇宙";
 	reset_p[0].innerHTML = "リセット";
 	cheer_p[0].style.border = "solid 1px #000";
 	cheer_p[0].style.backgroundColor = "#C3C3C3";
@@ -282,6 +285,12 @@ javascript:(function(){
 	love_p[0].style.cursor = "pointer";
 	love_p[0].style.userSelect = "none";
 	love_p[0].style.textAlign = "center";
+	cosmo_p[0].style.border = "solid 1px #000";
+	cosmo_p[0].style.backgroundColor = "#C3C3C3";
+	cosmo_p[0].style.color = "#000";
+	cosmo_p[0].style.cursor = "pointer";
+	cosmo_p[0].style.userSelect = "none";
+	cosmo_p[0].style.textAlign = "center";
 	reset_p[0].style.border = "solid 1px #000";
 	reset_p[0].style.backgroundColor = "#C3C3C3";
 	reset_p[0].style.color = "#000";
@@ -293,15 +302,18 @@ javascript:(function(){
 		cheer_p[i].style.margin = "0";
 		aid_p[i].style.margin = "0";
 		love_p[i].style.margin = "0";
+		cosmo_p[i].style.margin = "0";
 		reset_p[i].style.margin = "0";
 		test_love_box[0].appendChild(cheer_p[i]);
 		test_love_box[1].appendChild(aid_p[i]);
 		test_love_box[2].appendChild(love_p[i]);
-		test_love_box[3].appendChild(reset_p[i]);
+		test_love_box[3].appendChild(cosmo_p[i]);
+		test_love_box[4].appendChild(reset_p[i]);
 	}
 	cheer_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
 	aid_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
 	love_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
+	cosmo_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
 	reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ test_cost + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
 	// cheer_p[1].style.fontSize = "";
 	// aid_p[1].style.fontSize = "";
@@ -337,8 +349,18 @@ javascript:(function(){
 		reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
 		update();
 	});
+	cosmo_p[0].addEventListener("click", () => {
+		pot += 2500;
+		test_pot_sum += 2500;
+		test_cost += 5000;
+		test_hp += 400*ratio2;
+		test_pot[3]++;
+		cosmo_p[1].innerHTML = "回数:<b>" + test_pot[3] + "</b><br>POT:+<b>" + (test_pot[3]*2500) + "</b>枚<br>消費:<b>" + (test_pot[3]*5000) + "</b>枚<br>HP:+<b>" + test_pot[3]*400*ratio2 + "</b>";
+		reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
+		update();
+	});
 	reset_p[0].addEventListener("click", () => {
-		for(i=0;i<3;i++){
+		for(i=0;i<4;i++){
 			test_pot[i] = 0;
 		}
 		if(pt!=null){
@@ -359,6 +381,7 @@ javascript:(function(){
 		cheer_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
 		aid_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
 		love_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
+		cosmo_p[1].innerHTML = "回数:<b>0</b><br>POT:+<b>0</b>枚<br>消費:<b>0</b>枚<br>HP:+<b>0</b>";
 		reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
 	});
 

@@ -398,7 +398,6 @@ javascript:(function(){
 		for(i=0;i<chars.length;i++){
 			// const f = Array.from(chars[i].getElementsByTagName("font")).filter(el => el.innerHTML.match(/.+ \d*枚/g));
 			const f = chars[i].innerHTML.match(/[^<>]*\d+枚[^<>]*/g);
-			console.log(f);
 			if(chars.length!=char_bet.length){
 				for(j=0;j<chars.length;j++){
 					char_bet.push(0);

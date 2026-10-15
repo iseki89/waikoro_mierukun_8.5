@@ -153,7 +153,7 @@ javascript:(function(){
 		
 
 		const img = chars[i].getElementsByTagName("img")[0];
-		const a = img.parentNode;
+		const a = img.parentNode.parentNode;
 		a.href = "javascript:void(0)";
 		img.addEventListener("click", () => {
 			if(char_state[index]["select"]==0){
@@ -401,7 +401,7 @@ javascript:(function(){
 						char_bet[i]++;
 					}
 				}
-				const un = f[j].match(/>.+ \d*枚/g);
+				const un = f[j].match(/.+ \d*枚/g);
 				let userName;
 				if(un!=null){
 					userName = un[0].replace(/ \d*枚/,"");

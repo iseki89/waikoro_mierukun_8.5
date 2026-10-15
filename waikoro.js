@@ -128,8 +128,7 @@ javascript:(function(){
 			// const tb = document.createElement("font");
 			const tb = document.createElement("span");
 			let bet_value = 300;
-			if(bet_values.length){
-				console.log(bet_values);
+			if(bet_values.length==chars.length){
 				bet_value = bet_values[index];
 			}
 			if(ratio==2) bet_value = 1000;
@@ -652,8 +651,7 @@ javascript:(function(){
 			let index = 0;
 			users["お試し"].forEach((tb) => {
 				let bet_value = 300;
-				if(bet_values.length){
-					console.log(bet_values);
+				if(bet_values.length==chars.length){
 					bet_value = bet_values[index];
 				}
 				if(ratio==2) bet_value = 1000;

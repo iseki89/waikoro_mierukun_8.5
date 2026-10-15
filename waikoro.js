@@ -135,7 +135,7 @@ javascript:(function(){
 			if(ratio==4) bet_value = 30;
 			if(ra3!=null) bet_value = 5000;
 			tb.innerHTML = "お試し " + bet_value + "枚<br>";
-			tb.color = "#0a6";
+			tb.style.color = "#0a6";
 			tb.classList.add("test_bet");
 			chars[index].appendChild(tb);
 			update();

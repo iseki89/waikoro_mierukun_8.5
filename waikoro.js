@@ -71,8 +71,6 @@ javascript:(function(){
 		}
 	}
 
-	let test_bet_index = 0;
-
 	for(i=0;i<chars.length;i++){
 		const disp = document.createElement("p");
 		chars[i].prepend(disp);
@@ -129,9 +127,8 @@ javascript:(function(){
 				const tb = document.createElement("font");
 				let bet_value = 300;
 				if(bet_values.length){
-					console.log(bet_values);
-					console.log("index " + test_bet_index);
-					bet_value = bet_values[test_bet_index];
+					bet_value = bet_values[0];
+					bet_values.splice(0,1);
 				}
 				if(ratio==2) bet_value = 1000;
 				if(ratio==4) bet_value = 30;
@@ -151,9 +148,6 @@ javascript:(function(){
 					reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
 				}
 			});
-			// console.log(bet_values);
-			// console.log("index " + test_bet_index);
-			test_bet_index++;
 		}
 		
 		
@@ -395,56 +389,59 @@ javascript:(function(){
 			}
 
 			char_state[i]["testBet"] = 0;
-			for(j=0;j<f.length;j++){
-				const be = f[j].match(/\d*枚/g);
-				let bet;
-				if(be!=null){
-					bet = be[0].replace("枚","");
-					bet = parseInt(bet);
-					if(!isNaN(bet)){
-						sum += bet;
-						bets++;
-						char_bet[i]++;
-					}
-				}
-				const un = f[j];
-				let userName;
-				if(un!=null){
-					userName = un.replace(/ \d*枚/,"");
-					// if(userName.match(/<b>/)){
-					// 	userName = userName + "</b>";
-					// }
-					if(users[userName]==undefined){
-						users[userName] = [];
-						user_sum[userName] = bet;
-						for(k=0;k<chars.length;k++){
-							users[userName].push(0);
+			if(f.length){
+				for(j=0;j<f.length;j++){
+					const be = f[j].match(/\d*枚/g);
+					let bet;
+					if(be!=null){
+						bet = be[0].replace("枚","");
+						bet = parseInt(bet);
+						if(!isNaN(bet)){
+							sum += bet;
+							bets++;
+							char_bet[i]++;
 						}
-						users[userName][i]++;
-					}else{
-						users[userName][i]++;
-						user_sum[userName] += bet;
 					}
+					const un = f[j];
+					let userName;
+					if(un!=null){
+						userName = un.replace(/ \d*枚/,"");
+						// if(userName.match(/<b>/)){
+						// 	userName = userName + "</b>";
+						// }
+						if(users[userName]==undefined){
+							users[userName] = [];
+							user_sum[userName] = bet;
+							for(k=0;k<chars.length;k++){
+								users[userName].push(0);
+							}
+							users[userName][i]++;
+						}else{
+							users[userName][i]++;
+							user_sum[userName] += bet;
+						}
 
-					let match = false;
-					if(char_bet_user[i].length==0){
-						char_bet_user[i].push(userName);
-					}else{
-						for(k=0;k<char_bet_user[i].length;k++){
-							if(char_bet_user[i][k]==userName){
-								match = true;
+						let match = false;
+						if(char_bet_user[i].length==0){
+							char_bet_user[i].push(userName);
+						}else{
+							for(k=0;k<char_bet_user[i].length;k++){
+								if(char_bet_user[i][k]==userName){
+									match = true;
+								}
+							}
+							if(!match){
+								char_bet_user[i].push(userName);
 							}
 						}
-						if(!match){
-							char_bet_user[i].push(userName);
-						}
-					}
 
-					if(userName=="お試し"){
-						char_state[i]["testBet"] = 1;
+						if(userName=="お試し"){
+							char_state[i]["testBet"] = 1;
+						}
 					}
 				}
 			}
+
 		}
 
 		for(const name in users){

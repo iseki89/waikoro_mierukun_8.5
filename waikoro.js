@@ -665,6 +665,7 @@ javascript:(function(){
 			});
 		}
 		console.log(tb_num);
+		console.log(users);
 		if(pushed_name_i!=undefined){
 			const name = buttons[pushed_name_i].innerHTML;
 			if(tb_num!=0){

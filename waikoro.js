@@ -652,16 +652,18 @@ javascript:(function(){
 		let tb_num = 0;
 		if(users["お試し"]!=undefined){
 			test_bet = 0;
+			let index = 0;
 			users["お試し"].forEach((tb) => {
 				let bet_value = 300;
 				if(bet_values.length){
-					bet_value = bet_values[i];
+					bet_value = bet_values[index];
 				}
 				if(ratio==2) bet_value = 1000;
 				if(ratio==4) bet_value = 30;
 				if(ra3!=null) bet_value = 5000;
 				test_bet += tb*bet_value;
 				tb_num += tb;
+				index++;
 			});
 		}
 		console.log(tb_num);

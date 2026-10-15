@@ -53,8 +53,14 @@ javascript:(function(){
 		}
 	}
 
-	const box2 = p_box.nextElementSibling.nextElementSibling;
-	const bv = box2.innerHTML.match(/BET額\d+/g);
+	const box2 = p_box.nextElementSibling;
+	const as = box2.getElementsByTagName("a");
+	for(i=0;i<as.length;i++){
+		as[i].href = "javascript:void(0)";
+	}
+
+	const box3 = p_box.nextElementSibling.nextElementSibling;
+	const bv = box3.innerHTML.match(/BET額\d+/g);
 	if(bv) {
 		for(i=0;i<bv.length;i++){
 			let v = bv[i].replace("BET額","");
@@ -153,8 +159,8 @@ javascript:(function(){
 		
 
 		const img = chars[i].getElementsByTagName("img")[0];
-		const a = img.parentNode.parentNode;
-		a.href = "javascript:void(0)";
+		// const a = img.parentNode.parentNode;
+		// a.href = "javascript:void(0)";
 		img.addEventListener("click", () => {
 			if(char_state[index]["select"]==0){
 				for(j=0;j<chars.length;j++){
@@ -401,11 +407,10 @@ javascript:(function(){
 						char_bet[i]++;
 					}
 				}
-				const un = f[j].match(/.+ \d*枚/g);
+				const un = f[j];
 				let userName;
 				if(un!=null){
-					userName = un[0].replace(/ \d*枚/,"");
-					userName = un[0].replace(/>/,"");
+					userName = un.replace(/ \d*枚/,"");
 					// if(userName.match(/<b>/)){
 					// 	userName = userName + "</b>";
 					// }

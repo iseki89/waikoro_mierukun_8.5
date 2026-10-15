@@ -396,8 +396,9 @@ javascript:(function(){
 		}
 
 		for(i=0;i<chars.length;i++){
+			const f = Array.from(chars[i].getElementsByTagName("span")).filter(el => el.innerHTML.match(/[^<>]*\d+枚/g));
 			// const f = Array.from(chars[i].getElementsByTagName("font")).filter(el => el.innerHTML.match(/.+ \d*枚/g));
-			const f = chars[i].innerHTML.match(/[^<>]*\d+枚[^<>]*/g);
+			// const f = chars[i].innerHTML.match(/[^<>]*\d+枚[^<>]*/g);//HTMLタグの種類が変わっても検出可能なのは安心だが、処理が重くて微妙
 			if(chars.length!=char_bet.length){
 				for(j=0;j<chars.length;j++){
 					char_bet.push(0);
@@ -413,7 +414,7 @@ javascript:(function(){
 			char_state[i]["testBet"] = 0;
 			if(f.length){
 				for(j=0;j<f.length;j++){
-					const be = f[j].match(/\d*枚/g);
+					const be = f[j].innerHTML.match(/\d*枚/g);
 					let bet;
 					if(be!=null){
 						bet = be[0].replace("枚","");
@@ -424,7 +425,7 @@ javascript:(function(){
 							char_bet[i]++;
 						}
 					}
-					const un = f[j];
+					const un = f[j].innerHTML;
 					let userName;
 					if(un!=null){
 						userName = un.replace(/ \d*枚/,"");

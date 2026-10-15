@@ -463,6 +463,7 @@ javascript:(function(){
 
 						if(userName=="お試し"){
 							char_state[i]["testBet"] = 1;
+							console.log("お試し検知");
 						}
 					}
 				}
@@ -668,7 +669,7 @@ javascript:(function(){
 				tb_num += tb;
 			});
 		}
-
+		console.log(tb_num);
 		if(pushed_name_i!=undefined){
 			const name = buttons[pushed_name_i].innerHTML;
 			if(tb_num!=0){

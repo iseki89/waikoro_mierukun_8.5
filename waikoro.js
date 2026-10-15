@@ -428,8 +428,7 @@ javascript:(function(){
 					const un = f[j].innerHTML;
 					let userName;
 					if(un!=null){
-						userName = un.replace(/ \d*枚/,"");
-						userName = un.replace(/<.*>/,"");
+						userName = un.replace(/ \d*枚/,"").replace(/<.*>/,"");
 						// if(userName.match(/<b>/)){
 						// 	userName = userName + "</b>";
 						// }

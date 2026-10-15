@@ -8,7 +8,7 @@ javascript:(function(){
 	const button_state = [];
 	const user_sum = {};
 	const user_bet = {};
-	let bet_values = [];
+	const bet_values = [];
 	let sum = 0;
 	let bets = 0;
 	let test_bet = 0;
@@ -72,8 +72,6 @@ javascript:(function(){
 		}
 	}
 
-	const temp_bvs = bet_values;
-
 	for(i=0;i<chars.length;i++){
 		const disp = document.createElement("p");
 		chars[i].prepend(disp);
@@ -90,6 +88,7 @@ javascript:(function(){
 				chars[i].style.backgroundColor = "rgba(0,0,0,0.25)";
 				const imgs = chars[i].getElementsByTagName("img");
 				imgs[0].style.opacity = 0.5;
+				bet_values.splice(i,0,300);
 			}
 		}
 
@@ -131,8 +130,7 @@ javascript:(function(){
 				const tb = document.createElement("span");
 				let bet_value = 300;
 				if(bet_values.length){
-					bet_value = bet_values[0];
-					bet_values.splice(0,1);
+					bet_value = bet_values[index];
 				}
 				if(ratio==2) bet_value = 1000;
 				if(ratio==4) bet_value = 30;
@@ -184,8 +182,6 @@ javascript:(function(){
 			update();
 		});
 	}
-
-	bet_values = temp_bvs;
 
 	const display_box = document.createElement("div");
 	display_box.style.height = "auto";
@@ -661,7 +657,7 @@ javascript:(function(){
 			let index = 0;
 			users["お試し"].forEach((tb) => {
 				let bet_value = 300;
-				if(bet_values.length && tb>=1){
+				if(bet_values.length){
 					bet_value = bet_values[index];
 					index++;
 				}

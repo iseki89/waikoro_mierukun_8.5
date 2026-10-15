@@ -71,6 +71,8 @@ javascript:(function(){
 		}
 	}
 
+	const temp_bvs = bet_values;
+
 	for(i=0;i<chars.length;i++){
 		const disp = document.createElement("p");
 		chars[i].prepend(disp);
@@ -180,6 +182,8 @@ javascript:(function(){
 			update();
 		});
 	}
+
+	bet_values = temp_bvs;
 
 	const display_box = document.createElement("div");
 	display_box.style.height = "auto";

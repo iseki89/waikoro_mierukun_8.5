@@ -429,9 +429,6 @@ javascript:(function(){
 					let userName;
 					if(un!=null){
 						userName = un.replace(/ \d*枚/,"").replace(/<br>/,"");
-						// if(userName.match(/<b>/)){
-						// 	userName = userName + "</b>";
-						// }
 						if(users[userName]==undefined){
 							users[userName] = [];
 							user_sum[userName] = bet;
@@ -460,7 +457,6 @@ javascript:(function(){
 
 						if(userName=="お試し"){
 							char_state[i]["testBet"] = 1;
-							console.log("お試し検知");
 						}
 					}
 				}
@@ -666,8 +662,6 @@ javascript:(function(){
 				index++;
 			});
 		}
-		console.log(tb_num);
-		console.log(users);
 		if(pushed_name_i!=undefined){
 			const name = buttons[pushed_name_i].innerHTML;
 			if(tb_num!=0){

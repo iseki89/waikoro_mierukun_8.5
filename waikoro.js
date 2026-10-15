@@ -94,65 +94,62 @@ javascript:(function(){
 
 		const index = i;
 
-		if(!char_state[i]["die"]){
-			const test_bet_div = document.createElement("div");
-			test_bet_div.style.height = "0";
-			test_bet_div.style.width = "0";
-			test_bet_div.classList = "test_bet_div";
-			chars[i].prepend(test_bet_div);
-			const test_bet_p = document.createElement("p");
-			test_bet_p.innerHTML = "";
-			test_bet_p.style.border = "";
-			test_bet_p.style.backgroundColor = "#C3C3C3";
-			test_bet_p.style.color = "#000";
-			test_bet_p.style.cursor = "pointer";
-			test_bet_p.style.display = "inline-block";
-			test_bet_p.style.margin = "";
-			test_bet_p.style.userSelect = "none";
-			test_bet_p.classList = "test_bet_button_p";
-			test_bet_div.appendChild(test_bet_p);
-			const test_bet_rm = document.createElement("p");
-			test_bet_rm.innerHTML = "";
-			test_bet_rm.style.border = "";
-			test_bet_rm.style.backgroundColor = "#C3C3C3";
-			test_bet_rm.style.color = "#000";
-			test_bet_rm.style.cursor = "pointer";
-			test_bet_rm.style.display = "inline-block";
-			test_bet_rm.style.margin = "";
-			test_bet_rm.style.userSelect = "none";
-			test_bet_rm.classList = "test_bet_button_m";
-			test_bet_div.appendChild(test_bet_rm);
+		const test_bet_div = document.createElement("div");
+		test_bet_div.style.height = "0";
+		test_bet_div.style.width = "0";
+		test_bet_div.classList = "test_bet_div";
+		chars[i].prepend(test_bet_div);
+		const test_bet_p = document.createElement("p");
+		test_bet_p.innerHTML = "";
+		test_bet_p.style.border = "";
+		test_bet_p.style.backgroundColor = "#C3C3C3";
+		test_bet_p.style.color = "#000";
+		test_bet_p.style.cursor = "pointer";
+		test_bet_p.style.display = "inline-block";
+		test_bet_p.style.margin = "";
+		test_bet_p.style.userSelect = "none";
+		test_bet_p.classList = "test_bet_button_p";
+		test_bet_div.appendChild(test_bet_p);
+		const test_bet_rm = document.createElement("p");
+		test_bet_rm.innerHTML = "";
+		test_bet_rm.style.border = "";
+		test_bet_rm.style.backgroundColor = "#C3C3C3";
+		test_bet_rm.style.color = "#000";
+		test_bet_rm.style.cursor = "pointer";
+		test_bet_rm.style.display = "inline-block";
+		test_bet_rm.style.margin = "";
+		test_bet_rm.style.userSelect = "none";
+		test_bet_rm.classList = "test_bet_button_m";
+		test_bet_div.appendChild(test_bet_rm);
 
 
 
-			test_bet_p.addEventListener("click", () => {
-				// const tb = document.createElement("font");
-				const tb = document.createElement("span");
-				let bet_value = 300;
-				if(bet_values.length){
-					bet_value = bet_values[index];
-				}
-				if(ratio==2) bet_value = 1000;
-				if(ratio==4) bet_value = 30;
-				if(ra3!=null) bet_value = 5000;
-				tb.innerHTML = "お試し " + bet_value + "枚<br>";
-				tb.color = "#0a6";
-				tb.classList.add("test_bet");
-				chars[index].appendChild(tb);
+		test_bet_p.addEventListener("click", () => {
+			// const tb = document.createElement("font");
+			const tb = document.createElement("span");
+			let bet_value = 300;
+			if(bet_values.length){
+				bet_value = bet_values[index];
+			}
+			if(ratio==2) bet_value = 1000;
+			if(ratio==4) bet_value = 30;
+			if(ra3!=null) bet_value = 5000;
+			tb.innerHTML = "お試し " + bet_value + "枚<br>";
+			tb.color = "#0a6";
+			tb.classList.add("test_bet");
+			chars[index].appendChild(tb);
+			update();
+			reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
+		});
+
+		test_bet_rm.addEventListener("click", () => {
+			const tbs = chars[index].getElementsByClassName("test_bet");
+			if(tbs.length!=0){
+				chars[index].removeChild(tbs[0]);
 				update();
 				reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
-			});
-
-			test_bet_rm.addEventListener("click", () => {
-				const tbs = chars[index].getElementsByClassName("test_bet");
-				if(tbs.length!=0){
-					chars[index].removeChild(tbs[0]);
-					update();
-					reset_p[1].innerHTML = "お試し合計<br>POT:+<b>" + test_pot_sum + "</b>枚<br>消費:<b>"+ (test_cost+test_bet) + "</b>枚<br>HP:+<b>" + test_hp + "</b>";
-				}
-			});
-		}
-		
+			}
+		});
 		
 
 		const img = chars[i].getElementsByTagName("img")[0];
@@ -655,12 +652,10 @@ javascript:(function(){
 		let tb_num = 0;
 		if(users["お試し"]!=undefined){
 			test_bet = 0;
-			let index = 0;
 			users["お試し"].forEach((tb) => {
 				let bet_value = 300;
 				if(bet_values.length){
-					bet_value = bet_values[index];
-					index++;
+					bet_value = bet_values[i];
 				}
 				if(ratio==2) bet_value = 1000;
 				if(ratio==4) bet_value = 30;

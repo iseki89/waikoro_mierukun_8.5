@@ -124,7 +124,8 @@ javascript:(function(){
 
 
 			test_bet_p.addEventListener("click", () => {
-				const tb = document.createElement("font");
+				// const tb = document.createElement("font");
+				const tb = document.createElement("span");
 				let bet_value = 300;
 				if(bet_values.length){
 					bet_value = bet_values[0];

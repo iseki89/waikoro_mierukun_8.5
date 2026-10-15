@@ -8,7 +8,7 @@ javascript:(function(){
 	const button_state = [];
 	const user_sum = {};
 	const user_bet = {};
-	const bet_values = [];
+	let bet_values = [];
 	let sum = 0;
 	let bets = 0;
 	let test_bet = 0;
